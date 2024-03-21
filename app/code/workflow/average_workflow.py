@@ -57,9 +57,7 @@ class AverageWorkflow(Controller):
             fl_ctx=fl_ctx,
             abort_signal=abort_signal,
         )
-        
-
-        
+                
         self.log_info(fl_ctx, "Start aggregation.")
         aggr_shareable = self.aggregator.aggregate(fl_ctx)
         self.log_info(fl_ctx, "End aggregation.")
