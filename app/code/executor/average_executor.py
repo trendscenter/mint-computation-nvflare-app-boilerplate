@@ -50,7 +50,7 @@ class AverageExecutor(Executor):
 
 def save_results_to_file(results: dict, file_name: str, fl_ctx: FLContext):
     job_id = fl_ctx.get_job_id()
-    results_dir = os.path.join(job_id, "results")
+    results_dir = os.environ.get("RESULTS_DIR") or os.path.join(job_id, "results")
     if not os.path.exists(results_dir):
         os.makedirs(results_dir)
     with open(os.path.join(results_dir, file_name), "w") as f:
