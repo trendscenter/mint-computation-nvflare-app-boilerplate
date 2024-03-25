@@ -6,19 +6,29 @@ The purpose of this repository is to assist computation authors in beginning the
 Included in this repository are an example application and boilerplate code, which serve as practical starting points for creating your own applications.
 
 # NVFLARE
-## Overview
+
 NVFLARE is an open-source federated learning tool developed by NVIDIA
 You can find NVIDIA's documentation and source code here:
 https://nvflare.readthedocs.io/en/main/index.html
 https://github.com/NVIDIA/NVFlare
 
-
+## Overview
 Its useful to start with an overview of the basic parts of FLARE
-In the vocabulary of NVFLARE an `app` is what you'll be developing. It will contain the custom code for your specific computation.
-To run a federated computation using your NVFLARE `app` you'll need basic knowledge of how to setup and operate an NVFLARE `project`.
-You start by `provisioning` the project which creates a set of startup kits for the sites, the server, and an admin component to use.
-One the server, sites, and admin components are launched and connected by using the scripts in their respective startup kits, you can then submit a `job` which uses your custom `app`
 
-NVFLARE is a python package. Whether you develop your application using a container or on your local system, remember that the components will run in their own containers.
-NVFLARE provides a `POC` (proof of concept) mode as a optional tool for quickly developing and testing NVFLARE apps. When developing your app using POC mode, be considerate of how the production environment of containerized computations will be different - particulalry when it comes to absolute and relative paths to directories for `data/`,  `results/` and computation parameters.
-There are ways we can standardize around this to make development using POC mode not require any changes when an app runs in production.
+### The NVFLARE App
+In NVFLARE terminology, an `app` represents the specific computation or learning model you develop. It encapsulates the custom logic and algorithms necessary for your federated learning computation.
+
+### The NVFLARE Project
+A successful federated learning project requires setting up and managing an NVFLARE project, which includes:
+
+- Provisioning: Initiating a project creates startup kits for various components (sites, server, and admin) necessary for your federated network.
+- Deployment: Launching and connecting the server, sites, and admin components using scripts provided in the startup kits.
+- Execution: Submitting a job that runs your custom app across the federated network.
+
+### Development Environment:
+
+NVFLARE is a python package.
+NVFLARE applications can be developed both in containerized environments and on local systems, with the final deployment running in containers.
+ 
+#### Proof of Concept (POC) Mode
+NVFLARE offers a `POC` mode as an optional tool for rapid development and testing of applications. While POC mode simplifies the initial development process, it's important to consider the differences between the POC environment and the production environment in containers, particularly regarding file paths (data/, results/, and computation parameters). Standardizing development practices can minimize these differences, ensuring a smooth transition from POC to production.
