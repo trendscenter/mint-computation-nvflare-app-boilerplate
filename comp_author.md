@@ -9,8 +9,8 @@ Included in this repository are an example application and boilerplate code, whi
 
 NVFLARE is an open-source federated learning tool developed by NVIDIA
 You can find NVIDIA's documentation and source code here:
-https://nvflare.readthedocs.io/en/main/index.html
-https://github.com/NVIDIA/NVFlare
+- https://nvflare.readthedocs.io/en/main/index.html
+- https://github.com/NVIDIA/NVFlare
 
 ## Overview
 Its useful to start with an overview of the basic parts of FLARE
@@ -28,7 +28,9 @@ A successful federated learning project requires setting up and managing an NVFL
 ### Development Environment:
 
 NVFLARE is a python package.
-NVFLARE applications can be developed both in containerized environments and on local systems, with the final deployment running in containers.
+NVFLARE projects can be developed both in containerized environments and on local systems, with the final deployment running in containers.
  
 #### Proof of Concept (POC) Mode
-NVFLARE offers a `POC` mode as an optional tool for rapid development and testing of applications. While POC mode simplifies the initial development process, it's important to consider the differences between the POC environment and the production environment in containers, particularly regarding file paths (data/, results/, and computation parameters). Standardizing development practices can minimize these differences, ensuring a smooth transition from POC to production.
+NVFLARE offers a `POC` mode as an optional tool for rapid development and testing of NVFLARE apps. While POC mode simplifies the initial development process, it's important to consider the differences between the POC environment and the production environment in containers, particularly regarding file paths (data/, results/, and computation parameters). Standardizing development practices can minimize these differences, ensuring a smooth transition from POC to production.
+
+#### NVFLARE Simulator
