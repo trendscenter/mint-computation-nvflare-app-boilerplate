@@ -124,13 +124,10 @@ def get_data_dir_path(fl_ctx: FLContext) -> str:
 
     # Construct potential paths for Simulator and POC mode.
     site_name = fl_ctx.get_prop(FLContextKey.CLIENT_NAME)
-    simulator_path = os.path.join(os.getcwd(), "../../../test_data", site_name)
-    simulator_path = os.path.abspath(simulator_path)
-    poc_path = os.path.join(os.getcwd(), "../../../../test_data", site_name)
-    poc_path = os.path.abspath(poc_path)
-
-    print(f"\n\nSimulator path: {simulator_path}")
-    print(f"POC path: {poc_path}\n\n")
+    simulator_path = os.path.abspath(os.path.join(
+        os.getcwd(), "../../../test_data", site_name))
+    poc_path = os.path.abspath(os.path.join(
+        os.getcwd(), "../../../../test_data", site_name))
 
     # Check if the Simulator mode path exists, else fall back to the POC mode path if it exists.
     if os.path.exists(simulator_path):
