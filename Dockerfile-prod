@@ -1,20 +1,16 @@
 ARG PYTORCH_IMAGE=nvcr.io/nvidia/pytorch:23.02-py3
 FROM ${PYTORCH_IMAGE}
 
-ARG NVF_VERSION=2.4.0
-ENV NVF_BRANCH=${NVF_VERSION}
-
 RUN python3 -m pip install -U pip
 RUN python3 -m pip install -U setuptools
-RUN python3 -m pip install nvflare
+RUN python3 -m pip install nvflare==2.4.0
 
 WORKDIR /workspace/
 
-COPY ./jobs/ /workspace/jobs/
-COPY ./util/ /workspace/util/
-COPY ./app/ /workspace/app/
+ENV PYTHONPATH=$PYTHONPATH:/workspace/app/code/
 
-ENV PYTHONPATH=$PYTHONPATH:/workspace/app/code/:/workspace/util/
+COPY ./jobs/ /workspace/jobs/
+COPY ./app/ /workspace/app/
 
 ENV DATA_DIR=/workspace/data/
 ENV RESULTS_DIR=/workspace/results/

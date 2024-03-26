@@ -24,7 +24,9 @@ class AverageExecutor(Executor):
         print(f"\n\nExecutor received task: {task_name}\n\n")
 
         if task_name == "get_local_average_and_count":
-            local_average_and_count = get_local_average_and_count()
+            data_dir_path = get_data_dir_path(fl_ctx)
+            local_average_and_count = get_local_average_and_count(
+                data_dir_path)
 
             # save local average to local results file
             save_results_to_file(
@@ -49,9 +51,37 @@ class AverageExecutor(Executor):
 
 
 def save_results_to_file(results: dict, file_name: str, fl_ctx: FLContext):
-    job_id = fl_ctx.get_job_id()
-    results_dir = os.environ.get("RESULTS_DIR") or os.path.join(job_id, "results")
-    if not os.path.exists(results_dir):
-        os.makedirs(results_dir)
+    results_dir = get_results_dir_path(fl_ctx)
+    print(f"\nSaving results to: {results_dir}\n")
     with open(os.path.join(results_dir, file_name), "w") as f:
         json.dump(results, f)
+
+
+def get_results_dir_path(fl_ctx: FLContext):
+    # Directly return the path from environment variable if available
+    if "RESULTS_DIR" in os.environ:
+        return os.environ["RESULTS_DIR"]
+
+    # Construct the path using job_id and site_name if environment variable is not set
+    job_id = fl_ctx.get_job_id()
+    site_name = fl_ctx.get_prop(FLContextKey.CLIENT_NAME)
+    results_dir = os.path.join(
+        os.getcwd(), "../../../test_results", job_id, site_name)
+
+    # Ensure the directory exists
+    if not os.path.exists(results_dir):
+        os.makedirs(results_dir)
+
+    return results_dir
+
+
+def get_data_dir_path(fl_ctx: FLContext):
+    # Directly return the path from environment variable if available
+    if "DATA_DIR" in os.environ:
+        return os.environ["DATA_DIR"]
+
+    # Construct the path using site_name if environment variable is not set
+    site_name = fl_ctx.get_prop(FLContextKey.CLIENT_NAME)
+    data_dir_path = os.path.join(os.getcwd(), "../../../test_data", site_name)
+
+    return data_dir_path
