@@ -57,31 +57,85 @@ def save_results_to_file(results: dict, file_name: str, fl_ctx: FLContext):
         json.dump(results, f)
 
 
-def get_results_dir_path(fl_ctx: FLContext):
-    # Directly return the path from environment variable if available
-    if "RESULTS_DIR" in os.environ:
-        return os.environ["RESULTS_DIR"]
+def get_results_dir_path(fl_ctx: FLContext) -> str:
+    """
+    Determines the appropriate results directory path for the federated learning application.
 
-    # Construct the path using job_id and site_name if environment variable is not set
+    The function first checks for a 'RESULTS_DIR' environment variable. If not found,
+    it constructs the path based on conventions for Simulator and POC modes and ensures the directory exists.
+
+    Parameters:
+    - fl_ctx: FLContext, providing context for the federated learning client.
+
+    Returns:
+    - The path to the results directory as a string.
+    """
+
+    # Check for a globally defined results directory first.
+    results_dir = os.getenv("RESULTS_DIR")
+    if results_dir:
+        return results_dir
+
+    # Construct potential paths for Simulator and POC mode.
     job_id = fl_ctx.get_job_id()
     site_name = fl_ctx.get_prop(FLContextKey.CLIENT_NAME)
-    results_dir = os.path.join(
-        os.getcwd(), "../../../test_results", job_id, site_name)
 
-    # Ensure the directory exists
-    if not os.path.exists(results_dir):
-        os.makedirs(results_dir)
+    # first find the base directory, it could be ../../../test_results or ../../../../test_results
+    simulator_base_path = os.path.abspath(
+        os.path.join(os.getcwd(), "../../../test_results"))
+    poc_base_path = os.path.abspath(os.path.join(
+        os.getcwd(), "../../../../test_results"))
+    simulator_path = os.path.join(simulator_base_path, job_id, site_name)
+    poc_path = os.path.join(poc_base_path, job_id, site_name)
 
-    return results_dir
+    print(f"\n\nSimulator results path: {simulator_path}")
+    print(f"POC results path: {poc_path}\n\n")
+
+    if os.path.exists(simulator_base_path):
+        os.makedirs(simulator_path, exist_ok=True)
+        return simulator_path
+    elif os.path.exists(poc_base_path):
+        os.makedirs(poc_path, exist_ok=True)
+        return poc_path
+    else:
+        raise FileNotFoundError(
+            "Results directory path could not be determined.")
 
 
-def get_data_dir_path(fl_ctx: FLContext):
-    # Directly return the path from environment variable if available
-    if "DATA_DIR" in os.environ:
-        return os.environ["DATA_DIR"]
+def get_data_dir_path(fl_ctx: FLContext) -> str:
+    """
+    Determines the appropriate data directory path for the federated learning application by checking
+    if the expected directories for Simulator or POC modes exist.
 
-    # Construct the path using site_name if environment variable is not set
+    It first checks for a 'DATA_DIR' environment variable. If not found,
+    it tries to find the data directory based on the conventional paths for Simulator and POC modes.
+
+    Parameters:
+    - fl_ctx: FLContext, providing context for the federated learning client.
+
+    Returns:
+    - The path to the data directory as a string.
+    """
+
+    # Check for a globally defined data directory first.
+    data_dir = os.getenv("DATA_DIR")
+    if data_dir:
+        return data_dir
+
+    # Construct potential paths for Simulator and POC mode.
     site_name = fl_ctx.get_prop(FLContextKey.CLIENT_NAME)
-    data_dir_path = os.path.join(os.getcwd(), "../../../test_data", site_name)
+    simulator_path = os.path.join(os.getcwd(), "../../../test_data", site_name)
+    simulator_path = os.path.abspath(simulator_path)
+    poc_path = os.path.join(os.getcwd(), "../../../../test_data", site_name)
+    poc_path = os.path.abspath(poc_path)
 
-    return data_dir_path
+    print(f"\n\nSimulator path: {simulator_path}")
+    print(f"POC path: {poc_path}\n\n")
+
+    # Check if the Simulator mode path exists, else fall back to the POC mode path if it exists.
+    if os.path.exists(simulator_path):
+        return simulator_path
+    elif os.path.exists(poc_path):
+        return poc_path
+    else:
+        raise FileNotFoundError("Data directory path could not be determined.")

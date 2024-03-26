@@ -39,6 +39,30 @@ docker build -t nvflare-pt -f Dockerfile-dev .
 
 - You can launch the container by running `./dockerRun.sh`
 
+# Developing on local machine
+
+Make sure the following environment variables are set:
+
+```
+export PYTHONPATH=$PYTHONPATH:[path to this dir + ./app/code/]
+export NVFLARE_POC_WORKSPACE=[path to this dir + ./poc-workspace/]
+```
+
+# NVFLARE Simulator
+
+- The FL Simulator is a lightweight simulator of a running NVFLARE FL deployment, and it can allow researchers to test and debug their application without provisioning a real project.
+- https://nvflare.readthedocs.io/en/2.4.0/user_guide/nvflare_cli/fl_simulator.html
+
+## Using NVFLARE Simulator
+
+The simulator can run the entire project as a single thread. This can be useful for attaching a debugger.
+
+The following commands allow you to run the app using the Simulator
+
+```
+nvflare simulator -c site1,site2 ./jobs/job
+```
+
 # Proof of Concept (POC) Mode
 
 - The POC command allows users to try out the features of NVFlare in a proof of concept deployment on a single machine.
@@ -60,21 +84,6 @@ Once the previous command completes your command line will be in the admin shell
 submit_job job
 ```
 
-# NVFLARE Simulator
-
-- The FL Simulator is a lightweight simulator of a running NVFLARE FL deployment, and it can allow researchers to test and debug their application without provisioning a real project.
-- https://nvflare.readthedocs.io/en/2.4.0/user_guide/nvflare_cli/fl_simulator.html
-
-## Using NVFLARE Simulator
-
-The simulator can run the entire project as a single thread. This can be useful for attaching a debugger.
-
-The following commands allow you to run the app using the Simulator
-
-```
-nvflare simulator -c site1,site2 ./jobs/job
-```
-
 # COINSTAC requirements
 
 - Ideally your app code will work identically in development and production environments. The main differences between Simulator, POC mode and the production environment are the paths to the directories your application will use.
@@ -88,13 +97,20 @@ The following snippet from the boilerplate average computation shows this conven
 ```
 # app\code\executor\average_executor.py
 def get_data_dir_path(fl_ctx: FLContext):
-    # Directly return the path from environment variable if available
-    if "DATA_DIR" in os.environ:
-        return os.environ["DATA_DIR"]
+    data_dir = os.getenv("DATA_DIR")
+    if data_dir:
+        return data_dir
 
-    # Construct the path using site_name if environment variable is not set
+    # Construct potential paths for Simulator and POC mode.
     site_name = fl_ctx.get_prop(FLContextKey.CLIENT_NAME)
-    data_dir_path = os.path.join(os.getcwd(), "../../../test_data", site_name)
+    simulator_path = os.path.join(os.getcwd(), "../../../test_data", site_name)
+    poc_path = os.path.join(os.getcwd(), "../../../../test_data", site_name)
 
-    return data_dir_path
+    # Check if the Simulator mode path exists, else fall back to the POC mode path if it exists.
+    if os.path.exists(simulator_path):
+        return simulator_path
+    elif os.path.exists(poc_path):
+        return poc_path
+
+    raise FileNotFoundError("Data directory path could not be determined.")
 ```
