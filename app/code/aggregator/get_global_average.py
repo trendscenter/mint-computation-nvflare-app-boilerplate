@@ -1,5 +1,6 @@
 from typing import List, Dict
 
+
 def get_global_average(items: List[Dict[str, float]]):
     """Accepts a list of dicts of the following shape {average: float, count: int} and returns the weighted global average of the data."""
     if not items:

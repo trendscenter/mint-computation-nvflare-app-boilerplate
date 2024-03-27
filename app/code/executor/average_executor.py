@@ -1,7 +1,7 @@
 from nvflare.apis.executor import Executor
 from nvflare.apis.fl_constant import FLContextKey
 from nvflare.apis.fl_context import FLContext
-from nvflare.apis.shareable import Shareable 
+from nvflare.apis.shareable import Shareable
 from nvflare.apis.signal import Signal
 
 from .local_average import get_local_average_and_count
