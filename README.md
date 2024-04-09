@@ -41,6 +41,10 @@ docker build -t nvflare-pt -f Dockerfile-dev .
 - You can launch the container by running `./dockerRun.sh`
 
 ## Developing on local machine
+Install the nvflare package:
+```
+python3 -m pip install nvflare==2.4.0
+```
 
 Make sure the following environment variables are set:
 
