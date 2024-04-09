@@ -26,7 +26,6 @@ def my_callback(session: Session, job_id: str, job_meta, *cb_args, **cb_kwargs) 
 
     if 'FINISHED' in job_status:
         print(f"job {job_id} finished, shutting down system")
-        # session.shutdown_system()
         session.shutdown("all")
         return False
     else:
