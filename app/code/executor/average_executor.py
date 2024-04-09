@@ -18,8 +18,6 @@ class AverageExecutor(Executor):
         abort_signal: Signal,
     ) -> Shareable:
 
-        print(f"\n\nExecutor received task: {task_name}\n\n")
-
         if task_name == "get_local_average_and_count":
             data_dir_path = get_data_dir_path(fl_ctx)
             local_average_and_count = get_local_average_and_count(
@@ -84,9 +82,6 @@ def get_results_dir_path(fl_ctx: FLContext) -> str:
         os.getcwd(), "../../../../test_results"))
     simulator_path = os.path.join(simulator_base_path, job_id, site_name)
     poc_path = os.path.join(poc_base_path, job_id, site_name)
-
-    print(f"\n\nSimulator results path: {simulator_path}")
-    print(f"POC results path: {poc_path}\n\n")
 
     if os.path.exists(simulator_base_path):
         os.makedirs(simulator_path, exist_ok=True)
