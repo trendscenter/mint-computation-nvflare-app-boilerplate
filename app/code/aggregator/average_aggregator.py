@@ -57,8 +57,8 @@ class AverageAggregator(Aggregator):
             for data in self.stored_data[contribution_round].values():
                 data_for_aggregation.append(data)
 
+            # get the computation parameters
             computation_parameters = fl_ctx.get_prop("COMPUTATION_PARAMETERS")
-
             decimal_places = computation_parameters.get("decimal_places", 2)
 
             global_average = get_global_average(
