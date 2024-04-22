@@ -1,5 +1,4 @@
-ARG PYTORCH_IMAGE=nvcr.io/nvidia/pytorch:23.02-py3
-FROM ${PYTORCH_IMAGE}
+FROM python:3.8-buster
 
 RUN python3 -m pip install -U pip
 RUN python3 -m pip install -U setuptools
