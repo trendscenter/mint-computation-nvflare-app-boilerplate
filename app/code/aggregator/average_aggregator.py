@@ -25,8 +25,11 @@ class AverageAggregator(Aggregator):
         contributor_name = shareable.get_peer_prop(
             key=ReservedKey.IDENTITY_NAME, default=None)
 
-        print(f"Aggregator received contribution from {contributor_name} for round {contribution_round}")
-        
+        print(
+            f"Aggregator received contribution from {contributor_name}"
+            f" for round {contribution_round}"
+        )
+
         if contribution_round is None or contributor_name is None:
             return False  # Could log a warning/error here as well
 
@@ -54,7 +57,12 @@ class AverageAggregator(Aggregator):
             for data in self.stored_data[contribution_round].values():
                 data_for_aggregation.append(data)
 
-            global_average = get_global_average(data_for_aggregation)
+            computation_parameters = fl_ctx.get_prop("COMPUTATION_PARAMETERS")
+
+            decimal_places = computation_parameters.get("decimal_places", 2)
+
+            global_average = get_global_average(
+                data_for_aggregation, decimal_places)
             outgoing_shareable = Shareable()
             outgoing_shareable["global_average"] = global_average
 
