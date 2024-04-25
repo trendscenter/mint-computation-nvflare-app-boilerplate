@@ -2,7 +2,7 @@ from nvflare.apis.impl.controller import Controller, Task, ClientTask
 from nvflare.apis.fl_context import FLContext
 from nvflare.apis.signal import Signal
 from nvflare.apis.shareable import Shareable
-from nvflare.app_common.app_constant import AppConstants
+
 import os
 import json
 
