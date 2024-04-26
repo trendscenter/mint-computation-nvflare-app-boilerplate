@@ -60,7 +60,7 @@ app/config/
 
 #### Controller
 
-[](https://nvflare.readthedocs.io/en/main/apidocs/nvflare.apis.impl.controller.html)
+[https://nvflare.readthedocs.io/en/main/apidocs/nvflare.apis.impl.controller.html](https://nvflare.readthedocs.io/en/main/apidocs/nvflare.apis.impl.controller.html)
 The controller defines a workflow for the application.
 It creates and distributes tasks, receives the results and proc
 controller:
@@ -69,7 +69,7 @@ tasks
 
 #### Executor
 
-[](https://nvflare.readthedocs.io/en/main/apidocs/nvflare.apis.executor.html)
+[https://nvflare.readthedocs.io/en/main/apidocs/nvflare.apis.executor.html](https://nvflare.readthedocs.io/en/main/apidocs/nvflare.apis.executor.html)
 The execute method receives a task from the server and sends back a response by returning a Shareable
 
 Class: Executor
