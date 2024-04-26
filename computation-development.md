@@ -15,7 +15,7 @@ When you make a change to either of the files in `app/config/` be sure to run `a
 
 # Developing for NVFLARE
 
-https://nvflare.readthedocs.io/en/2.4.0/programming_guide.html
+[https://nvflare.readthedocs.io/en/2.4.0/programming_guide.html](https://nvflare.readthedocs.io/en/2.4.0/programming_guide.html)
 
 The things you must know to make an NVFLARE app
 
@@ -60,7 +60,7 @@ app/config/
 
 #### Controller
 
-https://nvflare.readthedocs.io/en/main/apidocs/nvflare.apis.impl.controller.html
+[](https://nvflare.readthedocs.io/en/main/apidocs/nvflare.apis.impl.controller.html)
 The controller defines a workflow for the application.
 It creates and distributes tasks, receives the results and proc
 controller:
@@ -69,7 +69,7 @@ tasks
 
 #### Executor
 
-https://nvflare.readthedocs.io/en/main/apidocs/nvflare.apis.executor.html
+[](https://nvflare.readthedocs.io/en/main/apidocs/nvflare.apis.executor.html)
 The execute method receives a task from the server and sends back a response by returning a Shareable
 
 Class: Executor
@@ -97,3 +97,5 @@ When testing, the name of the site folder needs to match the name of the client
 
 This is a JSON object the NVFLARE server will load and make available to all clients.
 Its contents can be whatever you want to include in your computation. Your computation will be responsible for reading it.
+
+## Test results

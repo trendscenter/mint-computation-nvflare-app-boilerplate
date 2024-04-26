@@ -10,6 +10,7 @@ This repository is meant to provide boilerplate code and a basic guide to get st
   - https://github.com/NVIDIA/NVFlare
 
 # Using NVFLARE to develop computations
+
 ## Overview
 
 - An NVFLARE Application is the specific computation or learning model you develop. It encapsulates the custom logic and algorithms necessary for your federated learning computation. See the `app/` folder in this repository.
@@ -39,9 +40,22 @@ docker build -t nvflare-pt -f Dockerfile-dev .
 ```
 
 - You can launch the container by running `./dockerRun.sh`
+- If you're using windows, launch the container by using the following command:
+
+```
+docker run --rm -it ^
+    --ipc=host --ulimit memlock=-1 --ulimit stack=67108864 ^
+    --name flare ^
+    -v %cd%:/workspace ^
+    -w //workspace ^
+    nvflare-pt:latest
+
+```
 
 ## Developing on local machine
+
 Install the nvflare package:
+
 ```
 python3 -m pip install nvflare==2.4.0
 ```
