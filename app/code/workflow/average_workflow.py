@@ -113,8 +113,14 @@ class AverageWorkflow(Controller):
         simulator_path = os.path.abspath(os.path.join(
             os.getcwd(), "../test_data", "server", "parameters.json"))
         poc_path = os.path.abspath(os.path.join(
-            os.getcwd(), "../../test_data", "server", "parameters.json"))
+            os.getcwd(), "../../../../test_data", "server", "parameters.json"))
 
+        print("\n\n")
+        print(f"production_path: {production_path}")
+        print(f"simulator_path: {simulator_path}")
+        print(f"poc_path: {poc_path}")
+        print("\n\n")
+        
         if production_path:
             return production_path
         if os.path.exists(simulator_path):
