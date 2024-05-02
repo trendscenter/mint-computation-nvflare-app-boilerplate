@@ -1,5 +1,9 @@
 This repository is meant to provide boilerplate code and a basic guide to get started using NVFLARE to make federated computations for COINTSAC.
 
+- [Hello World Tutorial](./docs/tutorial_hello_world.md)
+- [Computation Development Notes](./docs/computation_development.md)
+
+
 # What is NVFLARE?
 
 - NVFLARE is an open-source federated learning tool developed by NVIDIA.
