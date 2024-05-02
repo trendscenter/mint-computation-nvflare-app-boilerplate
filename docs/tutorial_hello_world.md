@@ -1,6 +1,7 @@
 # Hello World Tutorial
 
-<iframe width="1280" height="720" src="https://www.youtube.com/embed/_wGZxmQclFA" title="Tutorial - Run the NVFLARE boilerplate repo for COINSTAC" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+## View on Youtube:
+[![Hello World](https://img.youtube.com/vi/_wGZxmQclFA/0.jpg)](https://www.youtube.com/watch?v=_wGZxmQclFA)
 
 # Build the dev image
 ```
