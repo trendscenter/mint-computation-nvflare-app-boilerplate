@@ -48,6 +48,8 @@ class AverageWorkflow(Controller):
         parameters_file_path = self.get_parameters_file_path()
         computation_parameters = self.load_computation_parameters(
             parameters_file_path)
+        
+        self.validate_parameters(computation_parameters)
 
         fl_ctx.set_prop(key="COMPUTATION_PARAMETERS",
                         value=computation_parameters, private=False, sticky=True)
@@ -134,3 +136,12 @@ class AverageWorkflow(Controller):
     def load_computation_parameters(self, parameters_file_path: str):
         with open(parameters_file_path, "r") as file:
             return json.load(file)
+
+    def validate_parameters(self, parameters: dict) -> None:
+        try:
+            if 'decimal_places' not in parameters:
+                raise ValueError("Validation Error: The key 'decimal_places' is missing in the parameters.")
+            if not isinstance(parameters['decimal_places'], (int, float)):
+                raise ValueError("Validation Error: The value of 'decimal_places' must be a number.")
+        except ValueError as e:
+            raise ValueError(f"Error validating parameters: {e}")
