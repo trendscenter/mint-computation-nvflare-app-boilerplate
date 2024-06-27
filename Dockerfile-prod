@@ -15,3 +15,4 @@ COPY ./entry_edge.py /workspace/entry_edge.py
 
 ENV DATA_DIR=/workspace/data/
 ENV RESULTS_DIR=/workspace/results/
+ENV PARAMETERS_FILE_PATH=/runkit/parameters.json
