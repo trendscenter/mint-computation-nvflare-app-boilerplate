@@ -6,7 +6,7 @@ RUN python3 -m pip install nvflare==2.4.0
 
 WORKDIR /workspace/
 
-ENV PYTHONPATH=$PYTHONPATH:/workspace/app/code/
+ENV PYTHONPATH=/workspace/app/code/
 ENV NVFLARE_POC_WORKSPACE=/workspace/poc-workspace
 
 CMD ["/bin/bash"]
