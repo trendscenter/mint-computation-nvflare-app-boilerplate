@@ -17,7 +17,7 @@ Included in this repository:
 
 ### Quick Start
 
-To quickly get up and running with the boilerplate application, refer to the [Quick Start Guide](quick-start-guide.md).
+To quickly get up and running with the boilerplate application, refer to the [Quick Start Guide](docs/computation_development/quick_start.md).
 
 ## Documentation
 
