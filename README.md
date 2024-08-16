@@ -21,7 +21,7 @@ To quickly get up and running with the boilerplate application, refer to the [Qu
 
 ## Documentation
 
-- **[Computation Interface Documentation](docs/coinstac-computation-interface.md)**: How computations interact with COINSTAC.
-- **[Developer Guides](docs/computation-developer-guides.md)**: Tips for seamless computation development.
-- **[Publishing Guide](docs/computation-publishing.md)**: Requirements and instructions for publishing.
-- **[Reference Computations](links/reference-computations.md)**: Examples of best practices.
+- **[Computation Interface Documentation](docs/coinstac_computation_interface/COINSTAC_Computation_Interface.md)**: How computations interact with COINSTAC.
+- **[Developer Guides](docs/computation_development/computation_development.md)**: Tips for seamless computation development.
+- **[Publishing Guide](docs/computation_publishing/Computation_Publishing_Guide.md)**: Requirements and instructions for publishing.
+- **[Reference Computations](docs/computation_development/reference_computations.md)**: Examples of best practices.
