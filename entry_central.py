@@ -4,15 +4,15 @@ from nvflare.apis.job_def import RunStatus, JobMetaKey
 
 
 def start_server():
-    subprocess.run(["/bin/bash", "/runKit/server/startup/start.sh"],
-                   cwd="/runKit/server/startup")
+    subprocess.run(["/bin/bash", "/workspace/runKit/server/startup/start.sh"],
+                   cwd="/workspace/runKit/server/startup")
 
 
 start_server()
 
 session = new_secure_session(
     "admin@admin.com",
-    "/runKit/admin/"
+    "/workspace/runKit/admin/"
 )
 
 jobId = session.submit_job(

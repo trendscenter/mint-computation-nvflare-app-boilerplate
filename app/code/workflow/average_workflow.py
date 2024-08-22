@@ -2,6 +2,7 @@ from nvflare.apis.impl.controller import Controller, Task, ClientTask
 from nvflare.apis.fl_context import FLContext
 from nvflare.apis.signal import Signal
 from nvflare.apis.shareable import Shareable
+from coinstac_utils.paths import get_parameters_file_path
 
 import os
 import json
@@ -45,11 +46,9 @@ class AverageWorkflow(Controller):
         fl_ctx.set_prop(key="CURRENT_ROUND", value=0)
 
         # load parameters.json and set to the context that will be shared with clients
-        parameters_file_path = self.get_parameters_file_path()
-        computation_parameters = self.load_computation_parameters(
-            parameters_file_path)
-        
-        self.validate_parameters(computation_parameters)
+        parameters_file_path = get_parameters_file_path(fl_ctx)
+        computation_parameters = load_computation_parameters(parameters_file_path)
+        validate_parameters(computation_parameters)
 
         fl_ctx.set_prop(key="COMPUTATION_PARAMETERS",
                         value=computation_parameters, private=False, sticky=True)
@@ -105,43 +104,16 @@ class AverageWorkflow(Controller):
     def process_result_of_unknown_task(self, task: Task, fl_ctx: FLContext) -> None:
         pass
 
-    def get_parameters_file_path(self) -> str:
-        """
-        Determines the appropriate data directory path for the federated learning application by checking
-        if in production, simulator or poc mode.
-        """
+def load_computation_parameters(parameters_file_path: str):
+   
+    with open(parameters_file_path, "r") as file:
+        return json.load(file)
 
-        production_path = os.getenv("PARAMETERS_FILE_PATH")
-        simulator_path = os.path.abspath(os.path.join(
-            os.getcwd(), "../test_data", "server", "parameters.json"))
-        poc_path = os.path.abspath(os.path.join(
-            os.getcwd(), "../../../../test_data", "server", "parameters.json"))
-
-        print("\n\n")
-        print(f"production_path: {production_path}")
-        print(f"simulator_path: {simulator_path}")
-        print(f"poc_path: {poc_path}")
-        print("\n\n")
-        
-        if production_path:
-            return production_path
-        if os.path.exists(simulator_path):
-            return simulator_path
-        elif os.path.exists(poc_path):
-            return poc_path
-        else:
-            raise FileNotFoundError(
-                "parameters file path could not be determined.")
-
-    def load_computation_parameters(self, parameters_file_path: str):
-        with open(parameters_file_path, "r") as file:
-            return json.load(file)
-
-    def validate_parameters(self, parameters: dict) -> None:
-        try:
-            if 'decimal_places' not in parameters:
-                raise ValueError("Validation Error: The key 'decimal_places' is missing in the parameters.")
-            if not isinstance(parameters['decimal_places'], (int, float)):
-                raise ValueError("Validation Error: The value of 'decimal_places' must be a number.")
-        except ValueError as e:
-            raise ValueError(f"Error validating parameters: {e}")
+def validate_parameters(parameters: dict) -> None:
+    try:
+        if 'decimal_places' not in parameters:
+            raise ValueError("Validation Error: The key 'decimal_places' is missing in the parameters.")
+        if not isinstance(parameters['decimal_places'], (int, float)):
+            raise ValueError("Validation Error: The value of 'decimal_places' must be a number.")
+    except ValueError as e:
+        raise ValueError(f"Error validating parameters: {e}")

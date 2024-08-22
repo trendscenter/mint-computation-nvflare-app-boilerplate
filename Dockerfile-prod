@@ -14,5 +14,5 @@ COPY ./entry_central.py /workspace/entry_central.py
 COPY ./entry_edge.py /workspace/entry_edge.py
 
 ENV DATA_DIR=/workspace/data/
-ENV RESULTS_DIR=/workspace/results/
-ENV PARAMETERS_FILE_PATH=/runKit/parameters.json
+ENV OUTPUT_DIR=/workspace/output/
+ENV PARAMETERS_FILE_PATH=/workspace/runKit/parameters.json
