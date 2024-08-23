@@ -106,37 +106,3 @@ Once the previous command completes your command line will be in the admin shell
 ```
 submit_job job
 ```
-
-## COINSTAC requirements
-
-- Ideally your app code will work identically in development and production environments. The main differences between Simulator, POC mode and the production environment are the paths to the directories your application will use.
-
-- The following are the current conventions/requirements we will use to keep parity between development and production directory paths. The conventions may change in the future as we learn more.
-  - When developing in Simulator or POC mode, `./test_data` at the root of this repository will contain the source data your computation will consume. `./test_results` will be the directory each site puts their results.
-  - In production mode the sites will run in containers, the data and results folders on the host machine will be mounted to the container (currently as `/workspace/data/` and `/workspace/results`) and the paths to those directories will be environment variables `DATA_DIR` and `RESULTS_DIR`
-
-The following snippet from the boilerplate average computation shows this convention being implemented.
-
-```python
-# app\code\executor\average_executor.py
-def get_data_dir_path(fl_ctx: FLContext):
-    # Check for a globally defined data directory first.
-    data_dir = os.getenv("DATA_DIR")
-    if data_dir:
-        return data_dir
-
-    # Construct potential paths for Simulator and POC mode.
-    site_name = fl_ctx.get_prop(FLContextKey.CLIENT_NAME)
-    simulator_path = os.path.abspath(os.path.join(
-        os.getcwd(), "../../../test_data", site_name))
-    poc_path = os.path.abspath(os.path.join(
-        os.getcwd(), "../../../../test_data", site_name))
-
-    # Check if the Simulator mode path exists, else fall back to the POC mode path if it exists.
-    if os.path.exists(simulator_path):
-        return simulator_path
-    elif os.path.exists(poc_path):
-        return poc_path
-    else:
-        raise FileNotFoundError("Data directory path could not be determined.")
-```
