@@ -78,6 +78,7 @@ class AverageWorkflow(Controller):
             timeout=self._task_timeout,
             result_received_cb=self._accept_site_result
         )
+        
         self.broadcast_and_wait(
             task=accept_global_average_task,
             min_responses=self._min_clients,
