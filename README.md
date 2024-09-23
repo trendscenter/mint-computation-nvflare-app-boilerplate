@@ -18,8 +18,7 @@ Included in this repository:
 ### Quick Start
 
 To quickly get up and running with the boilerplate application, refer to the
-- [Quick Start Guide](docs/computation_development/quick_start.md).
-- [Hello World Tutorial](.docs/computation_development/tutorial_hello_world.md)
+- [Hello World Tutorial](docs/computation_development/tutorial_hello_world.md)
 
 ## Documentation
 
