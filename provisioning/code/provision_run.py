@@ -24,7 +24,7 @@ def provision_run(
 
     path_startup_kits = os.path.join(path_run, 'startupKits/')
     path_run_kits = os.path.join(path_run, 'runKits/')
-    path_hosting = os.path.join(path_run, 'hosting/')
+    
 
     # Ensure all necessary directories are created
     ensure_directory_exists(path_run)
@@ -52,13 +52,6 @@ def provision_run(
         host_identifier=host_identifier,
         admin_name=admin_name,
     )
-
-    # Zip and move the runKits to the hosting directory
-    # prepare_hosting_directory(
-    #     source_dir=path_run_kits,
-    #     target_dir=output_path,
-    #     exclude=['centralNode'],
-    # )
 
 def ensure_directory_exists(directory_path: str) -> None:
     try:

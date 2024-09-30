@@ -41,6 +41,7 @@ class AverageWorkflow(Controller):
         # Load and validate computation parameters directly
         parameters_file_path = get_parameters_file_path(fl_ctx)
         computation_parameters = load_computation_parameters(parameters_file_path)
+        
         validate_parameters(computation_parameters)
         fl_ctx.set_prop(
             key="COMPUTATION_PARAMETERS",

@@ -26,7 +26,7 @@ def main():
     parser.add_argument(
         '--input',
         default='/provisioning/provision_input.json',
-        help='Path to the provision input file (default: /provisioning/input/provision_input.json)'
+        help='Path to the provision input file (default: /provisioning/provision_input.json)'
     )
 
 
@@ -38,8 +38,7 @@ def main():
 
     # Extract arguments from provision input
     user_ids = provision_input.get('user_ids')
-    # path_run = provision_input.get('path_run')
-    path_run = os.path.join(os.getcwd(), 'provision_workspace')
+    path_run = os.path.join('/provisioning')
     computation_parameters = provision_input.get('computation_parameters')
     fed_learn_port = provision_input.get('fed_learn_port')
     admin_port = provision_input.get('admin_port')

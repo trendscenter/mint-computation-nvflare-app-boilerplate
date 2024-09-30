@@ -13,6 +13,9 @@ COPY ./app/ /workspace/app/
 COPY ./entry_central.py /workspace/entry_central.py
 COPY ./entry_edge.py /workspace/entry_edge.py
 
+COPY ./provisioning/ /workspace/provisioning/
+COPY ./entry_provision.py /workspace/entry_provision.py
+
 ENV DATA_DIR=/workspace/data/
 ENV OUTPUT_DIR=/workspace/output/
 ENV PARAMETERS_FILE_PATH=/workspace/runKit/parameters.json
