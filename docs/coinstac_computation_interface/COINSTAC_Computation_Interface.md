@@ -24,6 +24,4 @@ Defines the directory structure for COINSTAC computation runs. Computation autho
 
 - **`/output`:** Computation outputs, including results, logs, and error reports.
 
-- **`/provisioning/input`:** `provision_input.json` for the provisioning process.
-
-- **`/provisioning/output`:** Files generated during provisioning.
+- **`/provisioning/` for the provisioning process.

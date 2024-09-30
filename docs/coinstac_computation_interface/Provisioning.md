@@ -30,4 +30,5 @@ provision_input.json can be found at `<path to provision_input.json>`
 
 ### Output
 
-The output will be a set of ZIP files, with one file for each site involved in the run and an additional file labeled `central` for the central node.
+The output will be a set of files named for the userId of each site and an additional file named `centralNode`. These will be distributed to their respective sites.
+
