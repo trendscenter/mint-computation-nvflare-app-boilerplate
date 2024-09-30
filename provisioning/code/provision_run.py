@@ -17,7 +17,8 @@ def provision_run(
     computation_parameters: str,
     fed_learn_port: int,
     admin_port: int,
-    host_identifier: str
+    host_identifier: str,
+    output_path: str
 ) -> None:
     # Configurable variables
     admin_name = 'admin@admin.com'
@@ -56,7 +57,7 @@ def provision_run(
     # Zip and move the runKits to the hosting directory
     prepare_hosting_directory(
         source_dir=path_run_kits,
-        target_dir=path_hosting,
+        target_dir=output_path,
         exclude=['centralNode'],
     )
 
