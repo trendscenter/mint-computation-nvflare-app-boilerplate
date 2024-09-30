@@ -1,12 +1,13 @@
 import os
 import zipfile
 import logging
+from typing import List
 
 # Set up logging
 logger = logging.getLogger(__name__)
 logging.basicConfig(level=logging.INFO)
 
-def prepare_hosting_directory(source_dir: str, target_dir: str, exclude: list[str]) -> None:
+def prepare_hosting_directory(source_dir: str, target_dir: str, exclude: List[str]) -> None:
     # Ensure target_dir exists
     os.makedirs(target_dir, exist_ok=True)
 

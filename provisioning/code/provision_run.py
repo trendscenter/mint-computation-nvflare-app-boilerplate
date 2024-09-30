@@ -1,21 +1,23 @@
 import os
 import logging
-from generate_project_file import generate_project_file
-from create_startup_kits import create_startup_kits
-from create_run_kits import create_run_kits
-from prepare_hosting_directory import prepare_hosting_directory
+from .generate_project_file import generate_project_file
+from .create_startup_kits import create_startup_kits
+from .create_run_kits import create_run_kits
+from .prepare_hosting_directory import prepare_hosting_directory
+from typing import List
+
 
 # Set up logging
 logger = logging.getLogger(__name__)
 logging.basicConfig(level=logging.INFO)
 
 def provision_run(
-    user_ids: list[str],
+    user_ids: List[str],
     path_run: str,
     computation_parameters: str,
     fed_learn_port: int,
     admin_port: int,
-    host_indentifier: str
+    host_identifier: str
 ) -> None:
     # Configurable variables
     admin_name = 'admin@admin.com'
@@ -31,7 +33,7 @@ def provision_run(
 
     generate_project_file(
         project_name='project',
-        host_indentifier=host_indentifier,
+        host_identifier=host_identifier,
         fed_learn_port=fed_learn_port,
         admin_port=admin_port,
         output_file_path=os.path.join(path_run, 'Project.yml'),
@@ -47,7 +49,7 @@ def provision_run(
         startup_kits_path=os.path.join(path_startup_kits, 'project', 'prod_00'),
         output_directory=path_run_kits,
         computation_parameters=computation_parameters,
-        host_indentifier=host_indentifier,
+        host_identifier=host_identifier,
         admin_name=admin_name,
     )
 

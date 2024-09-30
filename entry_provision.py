@@ -1,7 +1,8 @@
 import json
 import os
 import logging
-from provision.provision_run import provision_run
+import argparse
+from provisioning.code.provision_run import provision_run
 
 # Set up logging
 logger = logging.getLogger(__name__)
@@ -11,25 +12,43 @@ def load_provision_input(provision_input_path: str) -> dict:
     try:
         with open(provision_input_path, 'r') as file:
             provision_input = json.load(file)
-        logger.info(f"Run provision input loaded from {provision_input_path}")
+        logger.info(f"Provision input loaded from {provision_input_path}")
         return provision_input
     except Exception as e:
-        logger.error(f"Failed to load run provision input: {e}")
+        logger.error(f"Failed to load provision input: {e}")
         raise
 
 def main():
-    provision_input_path = '/path/to/provision_input.json'  # Replace with the actual path
-
-    # Load run provision input
+    # Set up argument parser
+    parser = argparse.ArgumentParser(description="Run provisioning script")
+    parser.add_argument(
+        '--input',
+        default='/default/path/to/provision_input.json',
+        help='Path to the provision input file (default: /default/path/to/provision_input.json)'
+    )
+    
+    args = parser.parse_args()
+    provision_input_path = args.input
+    
+    # Load provision input
     provision_input = load_provision_input(provision_input_path)
 
     # Extract arguments
     user_ids = provision_input.get('user_ids')
-    path_run = provision_input.get('path_run')
+    # path_run = provision_input.get('path_run')
+    path_run = os.path.join(os.getcwd(), 'provision_workspace')
     computation_parameters = provision_input.get('computation_parameters')
     fed_learn_port = provision_input.get('fed_learn_port')
     admin_port = provision_input.get('admin_port')
     host_identifier = provision_input.get('host_identifier')
+    
+    print(f'user_ids: {user_ids}')
+    print(f'path_run: {path_run}')
+    print(f'computation_parameters: {computation_parameters}')
+    print(f'fed_learn_port: {fed_learn_port}')
+    print(f'admin_port: {admin_port}')
+    print(f'host_identifier: {host_identifier}')
+    
 
     # Call the provision_run function with the loaded arguments
     provision_run(

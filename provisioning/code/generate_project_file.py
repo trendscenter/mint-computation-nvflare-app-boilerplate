@@ -4,6 +4,7 @@ from typing import List
 
 # Set up logging
 logger = logging.getLogger(__name__)
+logging.basicConfig(level=logging.INFO)
 
 def generate_project_file(
     project_name: str,
@@ -68,17 +69,17 @@ def generate_project_file(
         'description': 'project yaml file',
     }
 
-    # Convert the data structure to a YAML formatted string
-    yaml_content = yaml.dump(data)
+    # Convert the data structure to a YAML formatted string using safe_dump
+    yaml_content = yaml.safe_dump(data, sort_keys=False)
 
     # Write the YAML content to the specified output file path
     try:
         with open(output_file_path, 'w', encoding='utf8') as file:
             file.write(yaml_content)
-        logger.info(f"Project file generated at: {output_file_path}")
+        logger.info(f"Project file generated successfully at: {output_file_path}")
     except Exception as error:
-        logger.error(f"Failed to generate project file: {error}")
-        raise  # Allows further error handling by the caller
+        logger.error(f"Failed to generate project file at {output_file_path}: {error}")
+        raise  # Propagate the error for further handling
 
 # Example usage:
 # generate_project_file("MyProject", "example.com", 8000, 9000, "output.yaml", ["site1", "site2"])
