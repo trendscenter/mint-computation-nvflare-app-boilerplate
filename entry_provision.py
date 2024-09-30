@@ -25,20 +25,13 @@ def main():
     # Input provision file argument
     parser.add_argument(
         '--input',
-        default='/provisioning/input/provision_input.json',
+        default='/provisioning/provision_input.json',
         help='Path to the provision input file (default: /provisioning/input/provision_input.json)'
     )
 
-    # Output directory argument
-    parser.add_argument(
-        '--output_path',
-        default='/provisioning/output/',
-        help='Path to the output directory (default: /provisioning/output/)'
-    )
-    
+
     args = parser.parse_args()
     provision_input_path = args.input
-    output_path = args.output_path
     
     # Load provision input
     provision_input = load_provision_input(provision_input_path)
@@ -58,7 +51,7 @@ def main():
     print(f'fed_learn_port: {fed_learn_port}')
     print(f'admin_port: {admin_port}')
     print(f'host_identifier: {host_identifier}')
-    print(f'output_path: {output_path}')
+
     
     # Call the provision_run function with the loaded arguments
     provision_run(
@@ -68,7 +61,6 @@ def main():
         fed_learn_port=fed_learn_port,
         admin_port=admin_port,
         host_identifier=host_identifier,
-        output_path=output_path  # Pass output_path here
     )
 
 if __name__ == '__main__':
