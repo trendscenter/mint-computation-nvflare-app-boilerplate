@@ -35,10 +35,10 @@ def main():
     
     # Load provision input
     provision_input = load_provision_input(provision_input_path)
+    path_run = os.path.join('/provisioning')
 
     # Extract arguments from provision input
     user_ids = provision_input.get('user_ids')
-    path_run = os.path.join('/provisioning')
     computation_parameters = provision_input.get('computation_parameters')
     fed_learn_port = provision_input.get('fed_learn_port')
     admin_port = provision_input.get('admin_port')
