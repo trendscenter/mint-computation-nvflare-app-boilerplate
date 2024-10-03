@@ -1,7 +1,3 @@
-Certainly! Let's consolidate your points into a clear, high-level guide tailored for computation authors who may not be expert software developers. This guide will illustrate the basic flow, provide examples, and focus on producing clear deliverables to achieve a well-designed computation that integrates with the COINSTAC platform.
-
----
-
 ### **Guide to Developing Computations for COINSTAC**
 
 **Goal**: Create a well-designed computation that integrates seamlessly with the COINSTAC platform, works reliably, and produces meaningful results.
