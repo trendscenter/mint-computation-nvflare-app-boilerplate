@@ -4,7 +4,6 @@ import os
 
 # Set up logging
 logger = logging.getLogger(__name__)
-logging.basicConfig(level=logging.INFO)
 
 def create_startup_kits(project_file_path: str, output_directory: str) -> None:
     provision_command = [
@@ -34,16 +33,21 @@ def create_startup_kits(project_file_path: str, output_directory: str) -> None:
             universal_newlines=True
         )
 
-        # Capture and log output line by line
+        # Capture and log output line by line from stdout
         for stdout_line in iter(process.stdout.readline, ""):
             logger.info(stdout_line.strip())
 
-        # Wait for the process to complete and get the return code
+        # Ensure the process stdout is closed
         process.stdout.close()
+
+        # Wait for the process to complete and get the return code
         return_code = process.wait()
 
+        # Read from stderr (if any) after the process finishes
+        stderr_output = process.stderr.read()
+        process.stderr.close()
+
         if return_code != 0:
-            stderr_output = process.stderr.read()
             logger.error(f'Provision command failed with return code {return_code}: {stderr_output}')
             raise subprocess.CalledProcessError(return_code, provision_command, output=stderr_output)
         

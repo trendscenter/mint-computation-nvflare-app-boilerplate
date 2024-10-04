@@ -4,7 +4,6 @@ import logging
 
 # Set up logging
 logger = logging.getLogger(__name__)
-logging.basicConfig(level=logging.INFO)
 
 def create_run_kits(
     startup_kits_path: str,

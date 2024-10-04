@@ -4,7 +4,6 @@ from typing import List
 
 # Set up logging
 logger = logging.getLogger(__name__)
-logging.basicConfig(level=logging.INFO)
 
 def generate_project_file(
     project_name: str,

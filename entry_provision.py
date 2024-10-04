@@ -1,12 +1,18 @@
 import json
 import os
 import logging
+import sys
 import argparse
 from provisioning.code.provision_run import provision_run
 
 # Set up logging
 logger = logging.getLogger(__name__)
-logging.basicConfig(level=logging.INFO)
+logging.basicConfig(
+    level=logging.INFO,
+    stream=sys.stdout,
+    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
+    force=True
+)
 
 def load_provision_input(provision_input_path: str) -> dict:
     try:

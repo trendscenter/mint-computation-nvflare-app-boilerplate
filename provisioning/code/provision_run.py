@@ -9,7 +9,6 @@ from typing import List
 
 # Set up logging
 logger = logging.getLogger(__name__)
-logging.basicConfig(level=logging.INFO)
 
 def provision_run(
     user_ids: List[str],
