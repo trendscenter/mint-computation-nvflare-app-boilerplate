@@ -33,29 +33,37 @@ def create_startup_kits(project_file_path: str, output_directory: str) -> None:
             universal_newlines=True
         )
 
-        # Capture and log output line by line from stdout
-        for stdout_line in iter(process.stdout.readline, ""):
-            logger.info(stdout_line.strip())
+        # Capture and log output from both stdout and stderr in real-time
+        while True:
+            stdout_line = process.stdout.readline()
+            stderr_line = process.stderr.readline()
 
-        # Ensure the process stdout is closed
+            # Log stdout if there's output
+            if stdout_line:
+                logger.info(stdout_line.strip())
+
+            # Log stderr if there's output
+            if stderr_line:
+                logger.error(stderr_line.strip())
+
+            # Break the loop when both stdout and stderr are done
+            if stdout_line == '' and stderr_line == '' and process.poll() is not None:
+                break
+
+        # Ensure the process streams are closed
         process.stdout.close()
+        process.stderr.close()
 
         # Wait for the process to complete and get the return code
         return_code = process.wait()
 
-        # Read from stderr (if any) after the process finishes
-        stderr_output = process.stderr.read()
-        process.stderr.close()
-
         if return_code != 0:
-            logger.error(f'Provision command failed with return code {return_code}: {stderr_output}')
-            raise subprocess.CalledProcessError(return_code, provision_command, output=stderr_output)
-        
+            logger.error(f'Provision command failed with return code {return_code}')
+            raise subprocess.CalledProcessError(return_code, provision_command)
+
         logger.info('Provisioning completed successfully.')
 
     except subprocess.CalledProcessError as error:
         logger.error(f'Failed to execute provision command: {error}')
         raise  # Propagate the error for further handling
 
-# Example usage:
-# create_startup_kits('/path/to/Project.yml', '/path/to/outputDirectory')
