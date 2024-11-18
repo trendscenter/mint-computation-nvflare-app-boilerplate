@@ -3,11 +3,11 @@
   "executors": [
     {
       "tasks": [
-        "get_local_average_and_count",
-        "accept_global_average"
+        "GET_LOCAL_AVERAGE_AND_COUNT",
+        "ACCEPT_GLOBAL_AVERAGE"
       ],
       "executor": {
-        "path": "executor.average_executor.AverageExecutor",
+        "path": "executor.executor.MyExecutor",
         "args": {}
       }
     }

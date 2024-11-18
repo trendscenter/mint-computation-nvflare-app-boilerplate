@@ -8,11 +8,10 @@ REMOTE_WORKSPACE='/workspace'
 echo "Using LOCAL_WORKSPACE: $LOCAL_WORKSPACE"
 echo "Using REMOTE_WORKSPACE: $REMOTE_WORKSPACE"
 
-
 # Run Docker, disabling path conversion on Windows
-echo MSYS_NO_PATHCONV=1 docker run --rm -it \
+MSYS_NO_PATHCONV=1 docker run --rm -it \
     --ipc=host --ulimit memlock=-1 --ulimit stack=67108864 \
-    --name flare \
+    --name nvflare-dev \
     -v "$LOCAL_WORKSPACE:$REMOTE_WORKSPACE" \
     -w "$REMOTE_WORKSPACE" \
-    nvflare-pt:latest
+    nvflare-dev:latest

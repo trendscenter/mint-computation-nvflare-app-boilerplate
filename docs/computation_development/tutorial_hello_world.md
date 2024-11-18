@@ -5,7 +5,7 @@
 
 # Build the dev image
 ```
-docker build -t nvflare-pt -f Dockerfile-dev .
+docker build -t nvflare-dev -f Dockerfile-dev .
 ```
 
 # Run the container
@@ -25,7 +25,7 @@ docker run --rm -it ^
 
 # Run the simulator
 ```
-nvflare simulator -c site1,site2 ./jobs/job
+nvflare simulator -c site1,site2 ./app
 ```
 
 # View the results
