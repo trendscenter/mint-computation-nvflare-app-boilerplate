@@ -82,7 +82,6 @@ def save_results_to_file(results: dict, file_name: str, fl_ctx: FLContext):
     try:
         with open(os.path.join(output_dir, file_name), "w") as f:
             json.dump(results, f, indent=4)
-        logging.info(f"Results successfully saved to: {
-                     os.path.join(output_dir, file_name)}")
+        logging.info(f"Results successfully saved to: {os.path.join(output_dir, file_name)}")
     except Exception as e:
         raise RuntimeError(f"Failed to save results to {file_name}: {e}")
