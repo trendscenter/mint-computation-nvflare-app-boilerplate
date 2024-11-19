@@ -26,7 +26,13 @@ The computation must demonstrate the following:
     - Minimum required number of datasets not met
   
 - **Testing**:
+  COMPATIBILITY
   - The computation should be tested to work in windows, linux, mac OS's with x86_64, 64 bit architectures
+  STRESS TESTING
+  - The computation should be stress tested to scale.
+  - Ex: Regressions, pre-processing should be clearly outline how much RAM is required for #datasets
+  - Limitations should be outlined
+
     
 ## 2. Documentation
 
