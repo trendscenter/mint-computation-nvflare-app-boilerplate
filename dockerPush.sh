@@ -8,8 +8,9 @@ COMPUTATION_HANDLE="boilerplate_average_app" # Default computation handle
 COMMIT_HASH=${1:-$(git rev-parse HEAD)}
 
 # Full tag for the image
-IMAGE_TAG="${REPOSITORY}:${COMPUTATION_HANDLE}-${COMMIT_HASH}"
+# IMAGE_TAG="${REPOSITORY}:${COMPUTATION_HANDLE}-${COMMIT_HASH}"
 
+IMAGE_TAG="${REPOSITORY}:${COMPUTATION_HANDLE}"
 # Build the image using Dockerfile-prod
 echo "Building the image with Dockerfile-prod..."
 docker build -f Dockerfile-prod -t "${COMPUTATION_HANDLE}" .
