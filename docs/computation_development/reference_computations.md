@@ -1,3 +1,0 @@
-- **[mint-computation-single-round-ridge-regression](https://github.com/trendscenter/mint-computation-single-round-ridge-regression)**
-- **[flare-file-transfer](https://github.com/dylanmartin/flare-file-transfer/)**
-- **[neuroflame_comp_single_round_ridge_regression_freesurfer](https://github.com/trendscenter/neuroflame_comp_single_round_ridge_regression_freesurfer)**
