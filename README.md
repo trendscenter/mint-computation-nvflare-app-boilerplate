@@ -26,3 +26,14 @@ To quickly get up and running with the boilerplate application, refer to the
 - **[Developer Guides](docs/computation_development/computation_development.md)**: Tips for seamless computation development.
 - **[Publishing Guide](docs/computation_publishing/Computation_Publishing_Guide.md)**: Requirements and instructions for publishing.
 - **[Reference Computations](docs/computation_development/reference_computations.md)**: Examples of best practices.
+
+## Computation Module Library
+
+### Example Computation Modules
+
+- **[mint-computation-single-round-ridge-regression](https://github.com/trendscenter/mint-computation-single-round-ridge-regression)**
+- **[flare-file-transfer](https://github.com/dylanmartin/flare-file-transfer/)**
+
+### TReNDS Approved Computation Modules
+
+- **[neuroflame_comp_single_round_ridge_regression_freesurfer](https://github.com/trendscenter/neuroflame_comp_single_round_ridge_regression_freesurfer)**
