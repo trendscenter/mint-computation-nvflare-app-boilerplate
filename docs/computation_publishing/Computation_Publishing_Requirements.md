@@ -54,12 +54,12 @@ Principal Investigators (PIs) are responsible for defining and enforcing additio
 
 Each computation module repository must maintain version-controlled checklists to track approval status and validation progress. The following checklist files are located in the same directory as this document and should be maintained within the repository:  
 
-- **[DEV_CHECKLIST.md](./DEV_CHECKLIST.md)**  
+- **[DEV_CHECKLIST_TEMPLATE.md](./DEV_CHECKLIST_TEMPLATE.md)**  
   - Tracks **technical requirements** for development team approval.  
   - Documents progress on successful execution, repository setup, and required documentation.  
   - Should be regularly updated with completion status and any pending issues.  
 
-- **[PI_CHECKLIST.md](./PI_CHECKLIST.md)**  
+- **[PI_CHECKLIST_TEMPLATE.md](./PI_CHECKLIST_TEMPLATE.md)**  
   - Tracks **PI-specific approval requirements** for accuracy, dataset compatibility, and validation.  
   - Allows PIs to document any additional criteria for module acceptance.  
 
