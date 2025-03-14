@@ -50,10 +50,17 @@ Principal Investigators (PIs) are responsible for defining and enforcing additio
 
 ---
 
-## Tracking and Documenting Validation Checks
+## **Tracking and Documenting Validation Checks**  
 
-A **master validation document** must be maintained within the computation module’s repository to track approval status. This document should:
+Each computation module repository must maintain version-controlled checklists to track approval status and validation progress. The following checklist files are located in the same directory as this document and should be maintained within the repository:  
 
-- List all **requirement items** along with their approval status.
-- Maintain **timestamps and logs**, including the **identity of the approver**, for each validated requirement.
-- Ensure clarity and traceability, as computation module code and documentation may evolve, potentially invalidating prior approvals.
+- **[DEV_CHECKLIST.md](./DEV_CHECKLIST.md)**  
+  - Tracks **technical requirements** for development team approval.  
+  - Documents progress on successful execution, repository setup, and required documentation.  
+  - Should be regularly updated with completion status and any pending issues.  
+
+- **[PI_CHECKLIST.md](./PI_CHECKLIST.md)**  
+  - Tracks **PI-specific approval requirements** for accuracy, dataset compatibility, and validation.  
+  - Allows PIs to document any additional criteria for module acceptance.  
+
+These checklists must be updated as progress is made and committed to version control to maintain a clear history of approvals, pending actions, and validation status.  
