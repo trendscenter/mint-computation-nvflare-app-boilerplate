@@ -22,7 +22,7 @@ To gain approval from the development team, the computation module must meet the
   - The module must be hosted in a **publicly accessible repository**.
   - The repository should include:
     - A **buildable, working image**.
-    - **Test data** for validation.
+    - **Test data** for validation. (3 or more sites)
     - The **computation description document**.
     - Automated workflows or scripts to **run test data**.
 
