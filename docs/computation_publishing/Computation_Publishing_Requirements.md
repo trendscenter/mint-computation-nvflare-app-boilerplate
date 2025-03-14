@@ -24,7 +24,6 @@ To gain approval from the development team, the computation module must meet the
     - A **buildable, working image**.
     - **Test data** for validation. (3 or more sites)
     - The **computation description document**.
-    - Automated workflows or scripts to **run test data**.
 
 ---
 
