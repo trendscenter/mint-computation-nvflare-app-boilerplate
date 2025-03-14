@@ -33,6 +33,6 @@ To quickly get up and running with the boilerplate application, refer to the
 - **[mint-computation-single-round-ridge-regression](https://github.com/trendscenter/mint-computation-single-round-ridge-regression)**
 - **[flare-file-transfer](https://github.com/dylanmartin/flare-file-transfer/)**
 
-### TReNDS Approved Computation Modules
+### TReNDS Computation Modules
 
-- **[neuroflame_comp_single_round_ridge_regression_freesurfer](https://github.com/trendscenter/neuroflame_comp_single_round_ridge_regression_freesurfer)**
+- **[computation_single_round_ridge_regression_freesurfer](https://github.com/NeuroFlame/computation_single_round_ridge_regression_freesurfer)**
