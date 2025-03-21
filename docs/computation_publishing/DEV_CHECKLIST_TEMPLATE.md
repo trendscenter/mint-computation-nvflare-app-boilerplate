@@ -13,7 +13,8 @@ Provide a clear and comprehensive document covering the following:
    - [ ] Structure of the **data directory**.  
    - [ ] Specification for **`parameters.json`**.  
 - [ ] **Output Format Description** – Clear definition of expected outputs.  
-- [ ] **Minimum Hardware & Space Requirements** – System requirements for execution.  
+- [ ] **Minimum Hardware & Space Requirements** – System requirements for execution.
+      When testing with sample datasets, track how much RAM is being used from the docker containers, Stats tab and create a formula. 
 - [ ] **Basic Dataset Validator** – A tool or script to validate input data format.  
 
 ## **GitHub Repository**  
